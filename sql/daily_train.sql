@@ -39,15 +39,15 @@ from
     where 
         date(label_date) = date('now', '-1 day')
         or
-        date(label_date) = date('now', '-2 day')
+        date(label_date) = date('now', '-9 day')
         or
         date(label_date) = date('now', '-3 day')
         or
-        date(label_date) = date('now', '-4 day')
+        date(label_date) = date('now', '-11 day')
         or
         date(label_date) = date('now', '-5 day')
         or
-        date(label_date) = date('now', '-6 day')
+        date(label_date) = date('now', '-13 day')
         or
         date(label_date) = date('now', '-7 day')
 )t1
@@ -68,19 +68,19 @@ from
     from %{ex}_rate_delta
     where 
 
-        date(label_date) = date('now', '-11 day')
+        date(label_date) = date('now', '-2 day')
+        or
+        date(label_date) = date('now', '-8 day')
+        or
+        date(label_date) = date('now', '-4 day')
+        or
+        date(label_date) = date('now', '-10 day')
+        or
+        date(label_date) = date('now', '-6 day')
         or
         date(label_date) = date('now', '-12 day')
         or
-        date(label_date) = date('now', '-13 day')
-        or
         date(label_date) = date('now', '-14 day')
-        or
-        date(label_date) = date('now', '-15 day')
-        or
-        date(label_date) = date('now', '-16 day')
-        or
-        date(label_date) = date('now', '-17 day')
 )t1
 group by code, label_date, label_rate
 ;

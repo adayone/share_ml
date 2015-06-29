@@ -1,5 +1,5 @@
-drop table if exists sz50_rate_index;
-create table if not exists sz50_rate_index 
+drop table if exists hs300_rate_index;
+create table if not exists hs300_rate_index 
 (
     code string,
     rate_list string,
@@ -7,17 +7,17 @@ create table if not exists sz50_rate_index
 )
 ;
 
-insert into sz50_rate_index 
+insert into hs300_rate_index 
 select 
 code,  
 trim(group_concat(',', rate), ',') as rate_list,
 count(*) as num 
-from sz50
+from hs300
 group by code 
 order by num;
 
-drop table if exists sz50_rate_index_clean;
-create table if not exists sz50_rate_index_clean 
+drop table if exists hs300_rate_index_clean;
+create table if not exists hs300_rate_index_clean 
 (
     code  string,
     rate_list string,
@@ -25,10 +25,10 @@ create table if not exists sz50_rate_index_clean
 )
 ;
 
-insert into sz50_rate_index_clean
+insert into hs300_rate_index_clean
 select t1.code, t1.rate_list, t1.num from 
-sz50_rate_index t1 
+hs300_rate_index t1 
 inner join
-(select num, count(*) as fre from sz50_rate_index group by num order by fre DESC limit 1)t2 
+(select num, count(*) as fre from hs300_rate_index group by num order by fre DESC limit 1)t2 
 on t1.num = t2.num
 ;

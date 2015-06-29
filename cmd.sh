@@ -1,4 +1,5 @@
 ./cmdf sql/rate.sql $1
 ./cmdf sql/daily_train.sql $1
 ./cmdf sql/vw.sql $1
-./train.sh
+cat train.sh | sed 's/%{ex}/'$1'/g' > ./real_train.sh
+./real_train.sh
