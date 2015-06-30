@@ -7,7 +7,7 @@ cat data/test.csv | python binary.py > data/vw_test
 
 rm -rf data/*.cache
 rm model/%{ex}_model.txt
-rm model/mode.vw
+rm model/%{ex}_mode.vw
 
 /usr/local/bin/vw -d data/vw_train \
 -c \
