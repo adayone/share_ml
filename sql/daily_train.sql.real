@@ -1,6 +1,6 @@
 -- train
-drop table if exists hs300_rate_delta;
-create table if not exists hs300_rate_delta
+drop table if exists sz50_rate_delta;
+create table if not exists sz50_rate_delta
 as
 select
 t1.code as code, 
@@ -12,21 +12,21 @@ from
 (
 select code, date, rate
 from
-hs300
+sz50
 where 
 date >= date('now', '-50 day') 
 )
 t1
 join
-hs300 t2
+sz50 t2
 on t1.code = t2.code
 and t2.date < t1.date
 and julianday(t1.date) - julianday(t2.date) <= 240
 order by code, date desc
 ;
 
-drop table if exists hs300_rate_train;
-create table if not exists hs300_rate_train
+drop table if exists sz50_rate_train;
+create table if not exists sz50_rate_train
 as
 select
 code,  label_rate,
@@ -35,7 +35,7 @@ from
 (
     select code, label_date, label_rate, date,
     printf('%d:%s', julianday(label_date) - julianday(date), rate) as delta
-    from hs300_rate_delta
+    from sz50_rate_delta
     where 
         date(label_date) = date('now', '-1 day')
         or
@@ -55,8 +55,8 @@ group by code, label_date, label_rate
 ;
 
 ---- test
-drop table if exists hs300_rate_test;
-create table if not exists hs300_rate_test
+drop table if exists sz50_rate_test;
+create table if not exists sz50_rate_test
 as
 select
 code,  label_rate,
@@ -65,7 +65,7 @@ from
 (
     select code, label_date, label_rate, date,
     printf('%d:%s', julianday(label_date) - julianday(date), rate) as delta
-    from hs300_rate_delta
+    from sz50_rate_delta
     where 
 
         date(label_date) = date('now', '-2 day')
@@ -87,25 +87,25 @@ group by code, label_date, label_rate
 
 
 ---- predict
-drop table if exists hs300_rate_pred;
-create table if not exists hs300_rate_pred
+drop table if exists sz50_rate_pred;
+create table if not exists sz50_rate_pred
 as
 select code,  date,
 printf('%d:%s', julianday('now') - julianday(date), rate) as delta
-from hs300
+from sz50
 where
 julianday('now') - julianday(date) <= 240
 order by code, date desc
 ;
 
-drop table if  exists hs300_rate_pred_index;
-create table if not exists hs300_rate_pred_index
+drop table if  exists sz50_rate_pred_index;
+create table if not exists sz50_rate_pred_index
 as
 select
 code, 
 group_concat(delta, ' ') as rate_list
 from
-hs300_rate_pred
+sz50_rate_pred
 group by code 
 ;
 

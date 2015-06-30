@@ -1,3 +1,4 @@
+python history.py
 ./cmd.sh sz50
 ./cmd.sh news 
 ./cmd.sh zz500
@@ -20,9 +21,11 @@ python add_auc.py news
 
 
 rm result/pred
-cat result/hs300_pred_auc >> result/pred
+cat result/sz50_pred_auc >> result/pred
 cat result/news_pred_auc >> result/pred
 cat result/zz500_pred_auc >> result/pred
 cat result/hs300_pred_auc >> result/pred
 
 ./cmdf sql/pred_load.sql
+
+python dump.py

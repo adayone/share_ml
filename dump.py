@@ -6,7 +6,6 @@ import sqlite3
 s = memcache.Client(["127.0.0.1:11211"])
 conn = sqlite3.connect('share_ml.db')
 cur = conn.cursor()
-
 cur.execute('select trim(code), round(prob,4), round(auc, 3) from daily_pred')
 rs = cur.fetchall()
 for item in rs:
@@ -28,9 +27,18 @@ ss = ''
 for item in rmd:
     rs += '%s %s %s\n'%(item[0], item[1], item[2])
     ss += item[0].strip() + ',' 
+
+cur.execute('select code, round(prob, 4), round(auc, 3) from daily_pred order by auc desc, prob asc limit 10')
+brmd = cur.fetchall()
+bss = ''
+for item in brmd:
+    bss += item[0].strip() + ',' 
+
+print bss
+
 s.set('-2', 'all prob: '+ rs)
-print ss
 s.set('-1', ss.rstrip(','))
+s.set('-3', bss.rstrip(','))
 
 
 
