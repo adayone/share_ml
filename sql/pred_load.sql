@@ -5,7 +5,8 @@ daily_pred
     code varchar(6),
     prob float,
     auc float,
-    class varchar(6)
+    class varchar(6),
+    threshold float
 );
 
 .mode csv

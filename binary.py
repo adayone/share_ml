@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import sys
+
 for line in sys.stdin:
     line = line.strip()
     items = line.split(',')
@@ -10,7 +11,7 @@ for line in sys.stdin:
     #num = abs(int(100 * label))
     #if num == 0 :
     #    continue
-    if label > 0.05:
+    if label >  float(sys.argv[1]):
         nl = 1
     else:
         nl = -1

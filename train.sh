@@ -1,5 +1,6 @@
-cat data/train.csv | python binary.py > data/vw_train
-cat data/test.csv | python binary.py > data/vw_test
+echo $1
+cat data/train.csv | python binary.py  $1 > data/vw_train
+cat data/test.csv | python binary.py  $1 > data/vw_test
 
 #cat data/vw_train| python format_svm.py > data/svm_train
 #cat data/vw_test| python format_svm.py > data/svm_test

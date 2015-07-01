@@ -1,11 +1,11 @@
 .mode csv
 .output data/train.csv
-select * from zz500_rate_train;
+select * from hs300_rate_train;
 
 .mode csv
 .output data/test.csv
-select * from zz500_rate_test;
+select * from hs300_rate_test;
 
 .mode csv
 .output data/predict.csv
-select * from zz500_rate_pred_index;
+select * from hs300_rate_pred_index;
