@@ -1,4 +1,6 @@
-#python history.py
+# get data
+python history.py
+# $1 threshold of rate
 ./cmd.sh sz50 $1
 ./cmd.sh news $1
 ./cmd.sh zz500 $1

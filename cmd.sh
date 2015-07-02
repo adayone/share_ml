@@ -1,5 +1,6 @@
+echo $1
 ./cmdf sql/rate.sql $1
-./cmdf sql/daily_train.sql $1
+./cmdf sql/daily_train_new.sql $1
 ./cmdf sql/vw.sql $1
 cat train.sh | sed 's/%{ex}/'$1'/g' > ./real_train.sh
 echo $2

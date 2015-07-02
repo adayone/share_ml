@@ -10,6 +10,7 @@ t2.date as date,
 t2.rate as rate
 from
 (
+    -- this is used for as label
 select code, date, rate
 from
 %{ex}
