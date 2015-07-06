@@ -15,7 +15,7 @@ zz500s.to_sql('zz500', engine, if_exists='replace', index=False)
 hs300s = td.get_hs300s_history()
 hs300s.to_sql('hs300', engine, if_exists='replace', index=False)
 
-#whole = td.get_all_history()
-#whole.to_sql('stock', engine, if_exists='replace', index=False)
+whole = td.get_all_history()
+whole.to_sql('stock', engine, if_exists='replace', index=False)
 
 
