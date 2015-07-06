@@ -1,6 +1,7 @@
 import tushare as ts
 import sys
 
+
 code = sys.argv[1]
 
 #stock_pd = ts.get_stock_basics()
